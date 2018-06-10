@@ -31,7 +31,7 @@ const SalesforceStrategy = require('passport-salesforce').Strategy;
 // setup the variables needed to run Salesforce connected app
 const clientId = process.env.SFCLIENTID;
 const clientSecret = process.env.SFCLIENTSECRET;
-// const callbackUrl = process.env.APP_URL + 'auth/callback';
+const callbackUrl = process.env.APP_URL + 'auth/callback';
 
 // intialise pg-promise library to use Bluebird and connect to postgres
 const Promise = require('bluebird');
@@ -62,7 +62,7 @@ passport.use(
     new SalesforceStrategy({
         clientID: clientId,
         clientSecret: clientSecret,
-        callbackURL: 'https://sf-profile-app.herokuapp.com/auth/callback',
+        callbackURL: callbackUrl,
         proxy: true
     }, async (accessToken, refreshToken, profile, done) => {
         // test if user exists
