@@ -30,6 +30,7 @@ Setup the config vars as necessary
 heroku config:set APP_URL=$(heroku info -s | grep web_url | cut -d= -f2)
 heroku config:set SFCLIENTID={your client id here}
 heroku config:set SFCLIENTSECRET={your client secret here}
+heroku config:set SESSIONKEY=asupersecretsessionkey
 ````
 
 to be continued... 

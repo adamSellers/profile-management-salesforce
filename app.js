@@ -1,9 +1,22 @@
+// require all the things needed for the app to work....
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const bodyParser = require('body-parser');
 
+// setup some database access - TODO
+
+
+// require the passport stuff
+require('./services/passport');
+
+// session setup using Redis (check the app.json file!)
+const session = require('express-session');
+const RedisStore = require('connect-redis')(session);
+
+// import the routes required for the app
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 
@@ -13,6 +26,13 @@ const app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
+// middleware setup
+// start with the session handling
+app.use(session({
+  store: new RedisStore(process.env.REDIS_URL),
+  secret: process.env.SESSIONKEY,
+  resave: false
+}));
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
