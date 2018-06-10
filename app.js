@@ -36,7 +36,7 @@ app.use(session({
   }),
   secret: process.env.SESSIONKEY,
   resave: false,
-  saveUnitialized: true
+  saveUninitialized: true
 }));
 app.use(logger('dev'));
 app.use(express.json());
