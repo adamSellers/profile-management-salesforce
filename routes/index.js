@@ -30,7 +30,7 @@ const authRoutes = require('./authRoutes');
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
-    console.log('req object is: ' + JSON.stringify(req));
+    console.log('req object is: ' + req);
     res.render('index', { title: 'Express', views: req.session.views });
 });
 
