@@ -33,17 +33,24 @@ const clientId = process.env.SFCLIENTID;
 const clientSecret = process.env.SFCLIENTSECRET;
 const callbackUrl = process.env.APP_URL + 'auth/callback';
 
-// setup some DB stuff here when ready (postgres stuff)
+// intialise pg-promise library to use Bluebird and connect to postgres
+const Promise = require('bluebird');
+const initOptions = {
+    promiseLib: Promise
+};
+const pgp = require('pg-promise')(initOptions);
+const db = pgp(process.env.DATABASE_URL);
 
 // serialise and deserialse user functions go here. Passport uses these
 // to interact with the session data
 passport.serializeUser(function (user, done) {
+    console.log('user id is: ' + user.id);
     done(null, user.id);
 });
 
 passport.deserializeUser(function (id, done) {
-    // database query to find user by id in postgres - TODO
-    console.log('user was found by id');
+    // query the db to find an existing user
+    console.log('we\'re probably going to wait here a bit..');
 });
 
 // setup the Salesforce Strategy
