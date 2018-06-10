@@ -1,6 +1,7 @@
 // require all the things needed for the app to work....
 const createError = require('http-errors');
 const express = require('express');
+const redis = require('redis').createClient();
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
@@ -29,7 +30,10 @@ app.set('view engine', 'jade');
 // middleware setup
 // start with the session handling
 app.use(session({
-  store: new RedisStore(process.env.REDIS_URL),
+  store: new RedisStore({
+    url: process.env.REDIS_URL,
+    client: redis
+  }),
   secret: process.env.SESSIONKEY,
   resave: false
 }));
