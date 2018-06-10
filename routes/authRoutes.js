@@ -29,7 +29,7 @@
 // grab the passport library
 const passport = require('passport');
 
-function salesforceAuth (router) {
+function salesforceAuth(router) {
     // Salesforce login route
     router.get('/auth/salesforce', passport.authenticate('salesforce', {
         scope: [
@@ -40,7 +40,20 @@ function salesforceAuth (router) {
     // Passport will manage the callback to this route
     router.get('/auth/callback', passport.authenticate('salesforce'), (req, res) => {
         // everything is authenticated so redirect to root
+        console.log('in the callback the access token from the session is: ' + req.session.accessToken);
         res.redirect('/');
+    });
+
+    // logout route
+    router.get('/api/logout', (req, res) => {
+        req.logout();
+        res.redirect('/');
+    });
+
+    // route to check current user
+    router.get('/api/current_user', (req, res) => {
+        res.setHeader('content-type', 'text/javascript; charset=utf-8');
+        res.send(req.user);
     });
 }
 

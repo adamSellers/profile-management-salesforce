@@ -75,6 +75,9 @@ app.use(session({
     }),
     secret: process.env.SESSIONKEY,
     resave: false,
+    cookie: {
+        maxAge: 60000
+    },
     saveUninitialized: true
 }));
 // next setup passport
