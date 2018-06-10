@@ -5,13 +5,13 @@
 // modification, are permitted provided that the following conditions are met:
 //
 // - Redistributions of source code must retain the above copyright notice,
-//   this list of conditions and the following disclaimer. 
-// - Redistributions in binary form must reproduce the above copyright notice, 
+//   this list of conditions and the following disclaimer.
+// - Redistributions in binary form must reproduce the above copyright notice,
 //   this list of conditions and the following disclaimer in the documentation
 //   and/or other materials provided with the distribution.
 // - Neither the name of the salesforce.com nor the names of its contributors
 //   may be used to endorse or promote products derived from this software
-//   without specific prior written permission. 
+//   without specific prior written permission.
 //
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
 // AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
@@ -36,7 +36,6 @@ const passport = require('passport');
 const helmet = require('helmet');
 
 // setup some database access - TODO
-
 
 // require the passport stuff
 require('./services/passport');
@@ -68,7 +67,7 @@ app.use(session({
   resave: false,
   saveUninitialized: true
 }));
-// next setup passport 
+// next setup passport
 app.use(passport.initialize());
 app.use(passport.session());
 // other middlewares to do the other stuff
@@ -76,6 +75,10 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(bodyParser.urlencoded({
+  extended: false
+}));
+app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);

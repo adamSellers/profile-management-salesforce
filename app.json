@@ -35,9 +35,10 @@
     }
   },
   "addons": [
-    "heroku-postgres",
+    "heroku-postgresql",
     "papertrail",
-    "heroku-redis"
+    "heroku-redis",
+    "herokuconnect:demo"
   ],
   "buildpacks": [
     {
