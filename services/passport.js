@@ -44,7 +44,7 @@ const db = pgp(process.env.DATABASE_URL);
 // serialise and deserialse user functions go here. Passport uses these
 // to interact with the session data
 passport.serializeUser(function (user, done) {
-    console.log('user id is: ' + user.id);
+    console.log('user details in serialize function: ' + JSON.stringify(user));
     done(null, user.id);
 });
 
