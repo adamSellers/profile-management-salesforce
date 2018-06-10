@@ -7,10 +7,7 @@ function salesforceAuth(router) {
     // Salesforce login route
     router.get('/auth/salesforce', passport.authenticate('salesforce', {
         scope: [
-            'id profile email address phone',
-            'api',
-            'chatter_api',
-            'refresh_token offline_access'
+            'full'
         ]
     }));
 
