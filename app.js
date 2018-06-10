@@ -38,6 +38,10 @@ app.use(session({
   resave: false,
   saveUninitialized: true
 }));
+// next setup passport 
+app.use(passport.initialize());
+app.use(passport.session());
+// other middlewares to do the other stuff
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
