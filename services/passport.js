@@ -71,7 +71,7 @@ passport.use(
             var existingUser = await db.one('SELECT * from Contact WHERE ownerid = $1 LIMIT 1', [profile.user_id]);
             console.log('user found: ' + JSON.stringify(existingUser));
         } catch (e) {
-            console.log('no user found');
+            console.error(e);
             existingUser = false;
         }
 
