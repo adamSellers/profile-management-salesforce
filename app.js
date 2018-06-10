@@ -57,7 +57,20 @@ app.set('view engine', 'jade');
 // middleware setup
 // always wear a helmet!
 app.use(helmet());
-// start with the session handling
+// next setup passport
+app.use(passport.initialize());
+app.use(passport.session());
+// other middlewares to do the other stuff
+app.use(logger('dev'));
+app.use(express.json());
+app.use(express.urlencoded({
+    extended: false
+}));
+app.use(cookieParser());
+app.use(bodyParser.json());
+app.use(express.static(path.join(__dirname, 'public')));
+
+// setup the session handling
 app.use(session({
     store: new RedisStore({
         url: process.env.REDIS_URL,
@@ -67,19 +80,6 @@ app.use(session({
     resave: false,
     saveUninitialized: true
 }));
-// next setup passport
-app.use(passport.initialize());
-app.use(passport.session());
-// other middlewares to do the other stuff
-app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(bodyParser.urlencoded({
-    extended: false
-}));
-app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
