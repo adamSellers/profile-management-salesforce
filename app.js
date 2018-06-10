@@ -57,9 +57,6 @@ app.set('view engine', 'jade');
 // middleware setup
 // always wear a helmet!
 app.use(helmet());
-// next setup passport
-app.use(passport.initialize());
-app.use(passport.session());
 // other middlewares to do the other stuff
 app.use(logger('dev'));
 app.use(express.json());
@@ -80,6 +77,9 @@ app.use(session({
     resave: false,
     saveUninitialized: true
 }));
+// next setup passport
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
