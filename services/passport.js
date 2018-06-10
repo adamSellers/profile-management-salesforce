@@ -31,7 +31,7 @@ const SalesforceStrategy = require('passport-salesforce').Strategy;
 // setup the variables needed to run Salesforce connected app
 const clientId = process.env.SFCLIENTID;
 const clientSecret = process.env.SFCLIENTSECRET;
-const callbackUrl = process.env.APP_URL + 'auth/callback';
+// const callbackUrl = process.env.APP_URL + 'auth/callback';
 
 // intialise pg-promise library to use Bluebird and connect to postgres
 const Promise = require('bluebird');
@@ -51,7 +51,7 @@ passport.serializeUser(function (user, done) {
 passport.deserializeUser(function (id, done) {
     // query the db to find an existing user
     console.log('we\'re probably going to wait here a bit..');
-    db.one('SELECT * from Contact WHERE ownderId = $1 LIMIT 1', [id]);
+    db.one('SELECT * from Contact WHERE ownerId = $1 LIMIT 1', [id]);
 });
 
 // setup the Salesforce Strategy
