@@ -46,7 +46,7 @@ function salesforceAuth(router) {
 
     // logout route
     router.get('/api/logout', (req, res) => {
-        req.logout();
+        req.session.destroy();
         res.redirect('/');
     });
 
