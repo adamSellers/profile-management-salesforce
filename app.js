@@ -35,7 +35,8 @@ app.use(session({
     client: redis
   }),
   secret: process.env.SESSIONKEY,
-  resave: false
+  resave: false,
+  saveUnitialized: true
 }));
 app.use(logger('dev'));
 app.use(express.json());
