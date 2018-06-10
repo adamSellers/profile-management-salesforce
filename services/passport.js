@@ -59,7 +59,7 @@ passport.use(
     new SalesforceStrategy({
         clientID: clientId,
         clientSecret: clientSecret,
-        callbackURL: callbackUrl,
+        callbackURL: 'https://sf-profile-app.herokuapp.com/auth/callback',
         proxy: true
     }, async (accessToken, refreshToken, profile, done) => {
         // test if user exists
