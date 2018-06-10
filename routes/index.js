@@ -34,7 +34,7 @@ router.get('/', function (req, res, next) {
 });
 
 router.get('/checks', (req, res) => {
-    console.log('req body is: ' + JSON.stringify(req.body));
+    console.log('req is: ' + JSON.stringify(req));
 });
 
 // import the Salesforce Auth Routes
