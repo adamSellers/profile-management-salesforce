@@ -27,7 +27,7 @@
 // require all the things needed for the app to work....
 const createError = require('http-errors');
 const express = require('express');
-const redis = require('redis').createClient();
+//const redis = require('redis').createClient();
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
@@ -70,8 +70,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // setup the session handling
 app.use(session({
     store: new RedisStore({
-        url: process.env.REDIS_URL,
-        client: redis
+        url: process.env.REDIS_URL
     }),
     secret: process.env.SESSIONKEY,
     resave: false,
