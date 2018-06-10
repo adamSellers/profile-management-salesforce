@@ -76,8 +76,9 @@ passport.use(
         }
 
         if (existingUser) {
-            // user exists so return user
-            console.log('found an existing user');
+            // user exists, save the owner ID to the session var
+            req.session.owner_id = profile.user_id;
+            console.log('stored ownerID ' + req.session.key["owner_id"] + ' to the session var');
             done(null, existingUser);
         } else {
             // user doesn't exist so this should break.
