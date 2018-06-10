@@ -73,7 +73,7 @@ app.use(session({
         url: process.env.REDIS_URL,
         client: redis
     }),
-    secret: process.env.SESSIONKEY,
+    secret: 'asupersecretkey',
     resave: false,
     cookie: {
         maxAge: 60000
