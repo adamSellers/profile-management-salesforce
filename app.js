@@ -56,6 +56,8 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
 // middleware setup
+// always wear a helmet!
+app.use(helmet());
 // start with the session handling
 app.use(session({
   store: new RedisStore({
