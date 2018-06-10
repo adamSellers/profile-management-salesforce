@@ -30,11 +30,7 @@ const authRoutes = require('./authRoutes');
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
-    if (req.session.views) {
-        req.session.views++;
-    } else {
-        req.sessions.views = 1;
-    }
+    console.log('req object is: ' + JSON.stringify(req));
     res.render('index', { title: 'Express', views: req.session.views });
 });
 
