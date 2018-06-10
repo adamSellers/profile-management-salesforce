@@ -51,6 +51,7 @@ passport.serializeUser(function (user, done) {
 passport.deserializeUser(function (id, done) {
     // query the db to find an existing user
     console.log('we\'re probably going to wait here a bit..');
+    db.one('SELECT * from Contact WHERE ownderId = $1 LIMIT 1', [id]);
 });
 
 // setup the Salesforce Strategy
@@ -61,11 +62,24 @@ passport.use(
         callbackURL: callbackUrl,
         proxy: true
     }, async (accessToken, refreshToken, profile, done) => {
-        // TODO - test postgres for existing user on profile.user_id from SF
-        // if existingUser => { do stuff }
-        // else createUser!
-        // but for now
+        // test if user exists
         console.log('salesforce profile info: ' + JSON.stringify(profile));
-        done(null);
+        try {
+            var existingUser = await db.one('SELECT * from Contact WHERE ownderId = $1 LIMIT 1', [profile.user_id]);
+            console.log('user found: ' + JSON.stringify(existingUser));
+        } catch (e) {
+            console.log('no user found');
+            existingUser = false;
+        }
+
+        if (existingUser) {
+            // user exists so return user
+            console.log('found an existing user');
+            done(null, existingUser);
+        } else {
+            // user doesn't exist so this should break.
+            console.log('we will write something that breaks here');
+            done(null);
+        }
     })
 );
