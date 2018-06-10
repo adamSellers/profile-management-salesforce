@@ -50,7 +50,7 @@ passport.serializeUser(function (user, done) {
 
 passport.deserializeUser(function (id, done) {
     // query the db to find an existing user
-    console.log('we\'re probably going to wait here a bit..');
+    console.log('user id in the deserialze is: ' + id);
     db.one('SELECT * from Contact WHERE ownerId = $1 LIMIT 1', [id]);
 });
 
