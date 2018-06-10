@@ -7,4 +7,7 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
+// import the Salesforce Auth Routes
+authRoutes.salesforceAuth(router);
+
 module.exports = router;
