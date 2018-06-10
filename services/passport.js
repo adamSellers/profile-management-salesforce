@@ -48,10 +48,10 @@ passport.serializeUser(function (user, done) {
     done(null, user.id);
 });
 
-passport.deserializeUser(function (user, done) {
+passport.deserializeUser(function (id, done) {
     // query the db to find an existing user
-    console.log('user id in the deserialze is: ' + user.id);
-    db.one('SELECT * from salesforce.Contact WHERE ownerid = $1 LIMIT 1', [user.ownerid])
+    console.log('user id in the deserialze is: ' + id);
+    db.one('SELECT * from salesforce.Contact WHERE id = $1 LIMIT 1', [id])
         .then((results) => {
             done(null, results);
         });
