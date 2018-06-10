@@ -64,7 +64,7 @@ passport.use(
         clientSecret: clientSecret,
         callbackURL: callbackUrl,
         proxy: true
-    }, async (req, accessToken, refreshToken, profile, done) => {
+    }, async (accessToken, refreshToken, profile, done) => {
         // test if user exists
         console.log('salesforce profile info: ' + JSON.stringify(profile));
         try {
@@ -76,9 +76,7 @@ passport.use(
         }
 
         if (existingUser) {
-            // user exists, store the SF response in the session then return the existing user
-            req.session.authenticated = true;
-            req.session.accessToken = accessToken;
+            // user exists, return the existing user
             done(null, existingUser);
         } else {
             // user doesn't exist so this should break.

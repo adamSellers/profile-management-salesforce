@@ -30,7 +30,8 @@ const authRoutes = require('./authRoutes');
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
-    res.render('index', { title: 'Express' });
+    req.session.views++;
+    res.render('index', { title: 'Express', views: req.session.views });
 });
 
 router.get('/checks', (req, res) => {
