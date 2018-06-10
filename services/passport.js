@@ -51,7 +51,10 @@ passport.serializeUser(function (user, done) {
 passport.deserializeUser(function (id, done) {
     // query the db to find an existing user
     console.log('user id in the deserialze is: ' + id);
-    db.one('SELECT * from Contact WHERE ownerId = $1 LIMIT 1', [id]);
+    db.one('SELECT * from Contact WHERE ownerid = $1 LIMIT 1', [id])
+        .then((results) => {
+            done(null, results);
+        });
 });
 
 // setup the Salesforce Strategy
@@ -65,7 +68,7 @@ passport.use(
         // test if user exists
         console.log('salesforce profile info: ' + JSON.stringify(profile));
         try {
-            var existingUser = await db.one('SELECT * from Contact WHERE ownerId = $1 LIMIT 1', [profile.user_id]);
+            var existingUser = await db.one('SELECT * from Contact WHERE ownerid = $1 LIMIT 1', [profile.user_id]);
             console.log('user found: ' + JSON.stringify(existingUser));
         } catch (e) {
             console.log('no user found');
