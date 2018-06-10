@@ -66,5 +66,6 @@ passport.use(
         // else createUser!
         // but for now
         console.log('salesforce profile info: ' + JSON.stringify(profile));
+        done(null);
     })
 );
