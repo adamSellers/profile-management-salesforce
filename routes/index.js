@@ -30,7 +30,11 @@ const authRoutes = require('./authRoutes');
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
-  res.render('index', { title: 'Express' });
+    res.render('index', { title: 'Express' });
+});
+
+router.get('/checks', (req, res) => {
+    console.log('req body is: ' + JSON.stringify(req.body));
 });
 
 // import the Salesforce Auth Routes
