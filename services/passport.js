@@ -53,6 +53,7 @@ passport.deserializeUser(function (id, done) {
     console.log('user id in the deserialze is: ' + id);
     db.one('SELECT * from salesforce.Contact WHERE id = $1 LIMIT 1', [id])
         .then((results) => {
+            console.log('deserialized a user!');
             done(null, results);
         });
 });
