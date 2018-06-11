@@ -64,7 +64,10 @@ passport.use(
         clientID: clientId,
         clientSecret: clientSecret,
         callbackURL: callbackUrl,
-        proxy: true
+        proxy: true,
+        authorizationURL: 'https://sdodemo-main-161d9a3dcf4.force.com/professional/services/oauth2/authorize',
+        tokenURL: 'https://sdodemo-main-161d9a3dcf4.force.com/professional/services/oauth2/token',
+        profileURL: 'https://sdodemo-main-161d9a3dcf4.force.com/professional/services/oauth2/userinfo'
     }, async (accessToken, refreshToken, profile, done) => {
         // test if user exists
         console.log('salesforce profile info: ' + JSON.stringify(profile));
