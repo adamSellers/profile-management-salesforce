@@ -72,10 +72,11 @@ passport.use(
         // test if user exists
         console.log('salesforce profile info: ' + JSON.stringify(profile));
         try {
+            console.log('trying something here, then breaking i think');
             var existingUser = await db.one('SELECT * from salesforce.user WHERE Id = $1 LIMIT 1', [profile.user_id]);
             console.log('user found: ' + JSON.stringify(existingUser));
         } catch (e) {
-            console.error(e);
+            console.error('catching the error: ' + e);
             existingUser = false;
         }
 
