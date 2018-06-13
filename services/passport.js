@@ -39,6 +39,7 @@ const initOptions = {
     promiseLib: Promise
 };
 const pgp = require('pg-promise')(initOptions);
+pgp.pg.defaults.ssl = true;
 const db = pgp(process.env.DATABASE_URL);
 
 // serialise and deserialse user functions go here. Passport uses these
