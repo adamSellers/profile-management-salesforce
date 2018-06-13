@@ -74,7 +74,7 @@ passport.use(
         try {
             let userId = profile.user_id;
             console.log('trying something here, then breaking i think');
-            var existingUser = await db.one('SELECT * from salesforce.user WHERE Id = $1 LIMIT 1', {userId: userId});
+            var existingUser = await db.one('SELECT * from salesforce.user WHERE Id = $1 LIMIT 1', [userId]);
             console.log('user found: ' + JSON.stringify(existingUser));
         } catch (e) {
             console.error('catching the error: ' + e);
