@@ -52,7 +52,7 @@ passport.serializeUser(function (user, done) {
 passport.deserializeUser(function (id, done) {
     // query the db to find an existing user
     console.log('user id in the deserialze is: ' + id);
-    db.one('SELECT * from salesforce.User WHERE Id = $1 LIMIT 1', [id])
+    db.one('SELECT * from salesforce.user WHERE Id = $1 LIMIT 1', [id])
         .then((results) => {
             console.log('deserialized a user!');
             done(null, results);
@@ -75,7 +75,7 @@ passport.use(
         try {
             let userId = profile.user_id;
             console.log('trying something here, then breaking i think');
-            var existingUser = await db.one('SELECT * from salesforce.user WHERE salesforce.user.Id = $1', [userId]);
+            var existingUser = await db.one('SELECT * from salesforce.user WHERE salesforce.user.Id = $1', userId);
             console.log('user found: ' + JSON.stringify(existingUser));
         } catch (e) {
             console.error('catching the error: ' + e);
