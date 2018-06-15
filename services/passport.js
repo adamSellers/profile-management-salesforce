@@ -74,8 +74,8 @@ passport.use(
         console.log('salesforce profile info: ' + JSON.stringify(profile));
         try {
             let userId = profile.user_id;
-            console.log('trying something here, then breaking i think');
-            var existingUser = await db.one('SELECT * from salesforce.user WHERE salesforce.user.Id = $1::String', userId);
+            console.log('trying something here, userid is: ' + userId);
+            var existingUser = await db.one('SELECT * from salesforce.user WHERE salesforce.user.Id = $1::text', userId);
             console.log('user found: ' + JSON.stringify(existingUser));
         } catch (e) {
             console.error('catching the error: ' + e);
