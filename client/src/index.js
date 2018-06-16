@@ -42,7 +42,7 @@ import reducers from './reducers';
 // this does create some issues with caching dev changes etc... look to reinstate when finished
 // import registerServiceWorker from './registerServiceWorker';
 
-import App from './App';
+import App from './components/App';
 
 // create the store
 const store = createStore(reducers, {}, applyMiddleware(reduxThunk));
