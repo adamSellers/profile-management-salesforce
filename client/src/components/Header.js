@@ -24,15 +24,48 @@
 // OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // *********************************************************************************/
-// This is the Header component
+// This is the Header component, it is going to control the login/logout logic
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
-export default class Header extends Component {
+
+export class Header extends Component {
+    // helper method to render content based on auth
+    renderLogin() {
+        switch (this.props.auth) {
+            case null:
+                return null;
+            case false:
+                return [
+                    <li className="collection-item" key="1"><a href="/auth/salesforce">Login</a></li>
+                ]
+            default:
+                return [
+                    <li className="collection-item" key="1" style={ {margin: '0 10px'} }>Welcome {this.props.auth.firstname}!</li>,
+                    <li className="collection-item" key="2"><a href="/api/logout">Logout</a></li>
+                ]
+        }
+    }
+
+    // render method begins here
     render() {
         return (
-            <div>
-                This is the header
-        </div>
+            <nav>
+                <div className="nav-wrapper teal">
+                    <Link to={this.props.auth ? '/profile': '/'} className="left brand-logo">Profile App</Link>
+                    <ul id="nav-mobile" className="right hide-on-med-and-down">
+                        {this.renderLogin()}
+                    </ul>
+                </div>
+            </nav>   
         )
     };
 };
+
+// have to map the state to props to use redux state
+function mapStateToProps({auth}) {
+    return { auth };
+};
+
+export default connect(mapStateToProps)(Header);
