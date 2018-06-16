@@ -24,31 +24,16 @@
 // OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // *********************************************************************************/
-/* This is the data layer control file, this will be 
- * used for initializing Redux in the front end */
-import React from 'react';
-import ReactDOM from 'react-dom';
-import reduxThunk from 'redux-thunk';
+// authReducer is responsible for managing bits of state that are used in the 
+// authentication processes in the app
+import { FETCH_USER } from '../actions/types';
 
+export default function (state = null, action) {
+    switch (action.type) {
+        case FETCH_USER:
+            return action.payload || false;
 
-// import css stuff here... 
-import './index.css';
-
-//import redux dependencies
-import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
-import reducers from './reducers';
-
-// this does create some issues with caching dev changes etc... look to reinstate when finished
-// import registerServiceWorker from './registerServiceWorker';
-
-import App from './App';
-
-// create the store
-const store = createStore(reducers, {}, applyMiddleware(reduxThunk));
-
-ReactDOM.render(
-    <Provider store = {store} ><App /></Provider>,
-    document.querySelector('root')
-    );
-// registerServiceWorker();
+        default: 
+            return state;
+    }
+}
