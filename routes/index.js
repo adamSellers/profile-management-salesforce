@@ -27,22 +27,32 @@
 const express = require('express');
 const router = express.Router();
 const authRoutes = require('./authRoutes');
-
-/* GET home page. */
-router.get('/', function (req, res, next) {
-    if (req.session.views) {
-        req.session.views++;
-    } else {
-        req.session.views = 1; 
-    }
-    res.render('index', { title: 'Express', views: req.session.views});
-});
-
-router.get('/checks', (req, res) => {
-    console.log('req user is: ' + JSON.stringify(req.session.passport.user));
-});
+const path = require('path');
 
 // import the Salesforce Auth Routes
 authRoutes.salesforceAuth(router);
+
+
+// all other backend routes are specified, so serve up index.html for react
+
+if (process.env.NODE_ENV === 'production') {
+    // Get Express to serve up react router in index.html for any other non defined route.
+    router.get('*', (req, res) => {
+        res.sendFile(path.resolve('client', 'build', 'index.html'));
+    });
+} else {
+    /* not in PRD so serve express backend stuff */
+    router.get('/', function (req, res, next) {
+        if (req.session.views) {
+            req.session.views++;
+        } else {
+            req.session.views = 1;
+        }
+        res.render('index', {
+            title: 'Express',
+            views: req.session.views
+        });
+    });
+}
 
 module.exports = router;

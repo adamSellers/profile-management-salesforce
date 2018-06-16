@@ -27,7 +27,6 @@
 // require all the things needed for the app to work....
 const createError = require('http-errors');
 const express = require('express');
-//const redis = require('redis').createClient();
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
@@ -35,7 +34,7 @@ const bodyParser = require('body-parser');
 const passport = require('passport');
 const helmet = require('helmet');
 
-// setup some database access - TODO
+// setup some database access - TODO?
 
 // require the passport stuff
 require('./services/passport');
@@ -82,6 +81,12 @@ app.use(session({
 // next setup passport
 app.use(passport.initialize());
 app.use(passport.session());
+
+if (process.env.NODE_ENV === 'production') {
+    // Express will serve up static assets in react for PRD
+    // like main.js or main.css
+    app.use(express.static(path.resolve('client', 'build')));
+  }
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);

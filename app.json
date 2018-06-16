@@ -27,6 +27,9 @@
     },
     "PAPERTRAIL_API_TOKEN": {
       "required": true
+    },
+    "SFCOMMUNITYURL": {
+      "required": true
     }
   },
   "formation": {
