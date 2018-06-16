@@ -39,9 +39,8 @@ function salesforceAuth(router) {
 
     // Passport will manage the callback to this route
     router.get('/auth/callback', passport.authenticate('salesforce'), (req, res) => {
-        // everything is authenticated so redirect to root
-        console.log('in the callback the access token from the session is: ' + req.session.accessToken);
-        res.redirect('/');
+        // everything is authenticated so redirect to the profile page (our authenticated root)
+        res.redirect('/profile');
     });
 
     // logout route
