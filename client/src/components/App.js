@@ -30,6 +30,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
+import * as actions from '../actions';
 
 // Import components that are going to be used in the app
 import Header from './Header';
