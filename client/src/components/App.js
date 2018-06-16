@@ -39,7 +39,9 @@ import Landing from './Landing';
 import Profile from './Profile';
 
 class App extends Component {
-    // need to add the fetchUser call here in a bit
+    componentDidMount = () => {
+        this.props.fetchUser();
+    };
 
     render() {
         return (

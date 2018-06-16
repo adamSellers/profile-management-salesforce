@@ -32,7 +32,7 @@ import reduxThunk from 'redux-thunk';
 
 
 // import css stuff here... 
-import './index.css';
+import 'materialize-css/dist/css/materialize.min.css';
 
 //import redux dependencies
 import { Provider } from 'react-redux';
