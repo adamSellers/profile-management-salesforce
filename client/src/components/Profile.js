@@ -26,13 +26,22 @@
 // *********************************************************************************/
 // This is the Profile component
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
-export default class Profile extends Component {
+export class Profile extends Component {
     render() {
         return (
             <div>
-                This is the profile page, the meat of the first release functionality is here. 
+                The auth thing is: {this.props.auth} 
         </div>
         )
     };
 };
+
+// have to map the state to props to use redux state
+function mapStateToProps({auth}) {
+    return { auth };
+};
+
+export default connect(mapStateToProps)(Profile);
