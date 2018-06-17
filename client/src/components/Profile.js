@@ -32,9 +32,23 @@ import { Link } from 'react-router-dom';
 export class Profile extends Component {
     render() {
         return (
-            <div>
-                The auth thing is:
-        </div>
+                
+            <div class="row">
+                <div class="col s12 m7">
+                <div class="card">
+                    <div class="card-image">
+                    <img src={this.props.auth.fullphotourl} />
+                    <span class="card-title">{this.props.auth.name}</span>
+                    </div>
+                    <div class="card-content">
+                        <p>{this.props.auth.aboutme}</p>
+                    </div>
+                    <div class="card-action">
+                    <a href="#">Not sure what this will be?</a>
+                    </div>
+                </div>
+                </div>
+            </div>
         )
     };
 };
