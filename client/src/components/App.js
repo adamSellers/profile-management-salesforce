@@ -49,8 +49,9 @@ class App extends Component {
                 <BrowserRouter>
                     <div>
                     <Header />
+                    <Profile />
                         <Route exact path="/" component={Landing} />
-                        <Route exact path="/profile" component={Profile} />
+                        {/* <Route exact path="/profile" component={Profile} /> */}
                     </div>
                 </BrowserRouter>
             </div>
