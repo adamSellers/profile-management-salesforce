@@ -37,7 +37,7 @@ export class Profile extends Component {
                 <div class="col s12 m7">
                 <div class="card">
                     <div class="card-image">
-                    <img src={this.props.auth.fullphotourl} />
+                    <img src="images/sample-1.jpg" />
                     <span class="card-title">{this.props.auth.name}</span>
                     </div>
                     <div class="card-content">
