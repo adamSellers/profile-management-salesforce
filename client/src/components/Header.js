@@ -31,6 +31,10 @@ import { Link } from 'react-router-dom';
 
 
 export class Header extends Component {
+    componentDidMount = () => {
+        console.log('header component did mount: ' + JSON.stringify(this.props.auth));
+    }
+
     // helper method to render content based on auth
     renderLogin() {
         switch (this.props.auth) {
