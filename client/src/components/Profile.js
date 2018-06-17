@@ -57,8 +57,8 @@ export class Profile extends Component {
 };
 
 // have to map the state to props to use redux state
-function mapStateToProps ({auth}) {
-    return { auth };
+function mapStateToProps ({ profile }) {
+    return { profile };
 };
 
 export default connect(mapStateToProps)(Profile);
