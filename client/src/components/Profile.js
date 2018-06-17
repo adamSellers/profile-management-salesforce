@@ -31,9 +31,9 @@ import { Link } from 'react-router-dom';
 
 export class Profile extends Component {
 
-    componentDidMount = () => {
-        console.log('component did mount: ' + JSON.stringify(this.props.auth));
-    }
+    // componentDidMount = () => {
+    //     console.log('component did mount: ' + JSON.stringify(this.props.auth));
+    // }
     render() {
         return (
                 
@@ -42,10 +42,10 @@ export class Profile extends Component {
                 <div class="card">
                     <div class="card-image">
                     <img src="images/sample-1.jpg" />
-                    <span class="card-title">{this.props.auth.name}</span>
+                    <span class="card-title">Card title</span>
                     </div>
                     <div class="card-content">
-                        <p>{this.props.auth.aboutme}</p>
+                        <p>Some about me content</p>
                     </div>
                     <div class="card-action">
                     <a href="#">Not sure what this will be?</a>
