@@ -35,4 +35,4 @@ export const fetchUser = () => async (dispatch) => {
     //once the async function completes, we dispatch the action
     dispatch({ type: FETCH_USER, payload: res.data });
 
-;}
+};

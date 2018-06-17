@@ -31,9 +31,9 @@ import { Link } from 'react-router-dom';
 
 export class Profile extends Component {
 
-    // componentDidMount = () => {
-    //     console.log('component did mount: ' + JSON.stringify(this.props.auth));
-    // }
+    componentDidMount = () => {
+        console.log('component did mount: ' + JSON.stringify(this.props.auth));
+    }
     render() {
         return (
                 
