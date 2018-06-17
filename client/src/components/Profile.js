@@ -45,7 +45,7 @@ export class Profile extends Component {
                     <span class="card-title">Card title</span>
                     </div>
                     <div class="card-content">
-                        <p>Some about me content</p>
+                        <p>{this.props.auth.aboutme}</p>
                     </div>
                     <div class="card-action">
                     <a href="#">Not sure what this will be?</a>
