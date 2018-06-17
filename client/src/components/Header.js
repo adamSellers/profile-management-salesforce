@@ -26,7 +26,7 @@
 // *********************************************************************************/
 // This is the Header component, it is going to control the login/logout logic
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import { connect, mapStateToProps } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 
@@ -71,5 +71,6 @@ export class Header extends Component {
 function mapStateToProps({auth}) {
     return { auth };
 };
+
 
 export default connect(mapStateToProps)(Header);

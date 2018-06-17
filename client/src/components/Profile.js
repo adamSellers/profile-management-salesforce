@@ -32,7 +32,7 @@ import { Link } from 'react-router-dom';
 export class Profile extends Component {
 
     componentDidMount = () => {
-        console.log('component did mount: ' + JSON.stringify(this.props.auth));
+        console.log('component did mount: ' + JSON.stringify(this.props.route.auth.firstname));
     }
     render() {
         return (   
