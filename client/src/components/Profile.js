@@ -33,7 +33,7 @@ export class Profile extends Component {
     render() {
         return (
             <div>
-                The auth thing is: {this.props.auth} 
+                The auth thing is:
         </div>
         )
     };
