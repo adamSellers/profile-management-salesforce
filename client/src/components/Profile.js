@@ -35,17 +35,16 @@ export class Profile extends Component {
         console.log('component did mount: ' + JSON.stringify(this.props.auth));
     }
     render() {
-        return (
-                
+        return (   
             <div class="row">
                 <div class="col s12 m7">
-                <div class="card">
+                <div class="card horizontal large">
                     <div class="card-image">
                     <img src="images/sample-1.jpg" />
                     <span class="card-title">Card title</span>
                     </div>
                     <div class="card-content">
-                        <p>{this.props.auth.aboutme}</p>
+                        <p>Some about me stuff</p>
                     </div>
                     <div class="card-action">
                     <a href="#">Not sure what this will be?</a>
